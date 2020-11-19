@@ -1,15 +1,18 @@
 {
-  "name": "ffc-template-node",
-  "version": "1.0.0",
-  "description": "description-of-project-goes-here",
-  "homepage": "https://github.com/DEFRA/ffc-template-node",
+  "name": "ffc-sfi-agreement",
+  "version": "1.1.0",
+  "description": "Backend microservice for orchestrating an SFI agreement",
+  "homepage": "https://github.com/DEFRA/ffc-sfi-agreement",
   "main": "app/index.js",
   "scripts": {
     "test": "jest --runInBand",
     "start:watch": "nodemon --inspect=0.0.0.0 --ext js --legacy-watch app/index.js"
   },
   "author": "Defra",
-  "contributors": [],
+  "contributors": [
+    "Steve Hunt <steven.hunt@defra.gov.uk>",
+    "Paul Andrews <paul.andrews@defra.gov.uk>"
+  ],
   "license": "OGL-UK-3.0",
   "dependencies": {
     "@hapi/hapi": "^20.0.0"
