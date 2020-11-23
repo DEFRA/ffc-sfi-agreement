@@ -6,6 +6,10 @@ image: ffc-sfi-agreement
 
 labels: {}
 
+azureIdentity:
+  clientID: not-a-real-clientID
+  resourceID: not-a-real-resourceID
+
 containerConfigMap:
   name: ffc-sfi-agreement-config-map
 
@@ -27,6 +31,11 @@ container:
   readOnlyRootFilesystem: true
   allowPrivilegeEscalation: false
   port: 3000
+  messageQueueHost: dummy
+  updateAgreementQueueAddress: update-agreement
+  agreementChangedTopicAddress: agreement-changed
+  updateEligibilityQueueAddress: update-eligibility
+  eligibilityChangedTopicAddress: eligibility-changed
 
 livenessProbe:
   path: /healthz

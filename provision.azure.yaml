@@ -1,0 +1,7 @@
+resources:
+  queues:
+    - name: update-agreement
+    - name: update-eligibility
+  topics:
+    - name: agreement-changed
+    - name: eligibility-changed
