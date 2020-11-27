@@ -6,8 +6,16 @@ image: ffc-sfi-agreement
 
 labels: {}
 
+azureIdentity:
+  clientID: not-a-real-clientID
+  resourceID: not-a-real-resourceID
+
 containerConfigMap:
   name: ffc-sfi-agreement-config-map
+
+containerSecret:
+  name: ffc-sfi-agreement-container-secret
+  type: Opaque
 
 deployment:
   restartPolicy: Always
@@ -27,6 +35,19 @@ container:
   readOnlyRootFilesystem: true
   allowPrivilegeEscalation: false
   port: 3000
+  messageQueueHost: dummy
+  updateAgreementQueueAddress: update-agreement
+  agreementChangedTopicAddress: agreement-changed
+  updateEligibilityQueueAddress: update-eligibility
+  eligibilityChangedTopicAddress: eligibility-changed
+
+postgresService:
+  postgresDb: ffc_sfi_agreement
+  postgresExternalName:
+  postgresHost: ffc-sfi-agreement-postgres
+  postgresPort: 5432
+  postgresSchema: public
+  postgresUser: postgres
 
 livenessProbe:
   path: /healthz
