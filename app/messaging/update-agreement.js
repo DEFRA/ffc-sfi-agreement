@@ -1,7 +1,7 @@
-module.exports = async function (message) {
-  if (message.userProperties.source === 'ffc-sfi-frontend') {
-    await require('./senders').agreementChanged(message.body)
+module.exports = async function (msg) {
+  if (msg.userProperties.source === 'ffc-sfi-frontend') {
+    await require('./senders').agreementChanged({ body: msg.body, correlationId: msg.correlationId })
   } else {
-    console.log(`Received ${JSON.stringify(message.body)} from ${message.userProperties.source}`)
+    console.log(`Received ${JSON.stringify(msg.body)} from ${msg.userProperties.source}`)
   }
 }

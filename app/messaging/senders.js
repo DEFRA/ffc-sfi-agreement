@@ -19,14 +19,15 @@ process.on('SIGINT', async () => {
   process.exit(0)
 })
 
-async function sendMessage (sender, messageData, messageType) {
+async function sendMessage (sender, msgData, msgType) {
   await sender.connect()
-  const message = {
-    body: messageData,
-    type: messageType,
+  const msgBase = {
+    type: msgType,
     source: messagingConfig.messageSource
   }
-  await sender.sendMessage(message)
+  const msg = { ...msgData, ...msgBase }
+  console.log('sending message', msg)
+  await sender.sendMessage(msg)
   await sender.closeConnection()
 }
 
