@@ -1,4 +1,4 @@
-const messagingConfig = require('../config/messaging')
+const msgCfg = require('../config/messaging')
 const { MessageSender } = require('ffc-messaging')
 
 let agreementChangedSender
@@ -19,11 +19,11 @@ process.on('SIGINT', async () => {
   process.exit(0)
 })
 
-async function sendMessage (sender, msgData, msgType) {
+async function sendMsg (sender, msgData, msgType) {
   await sender.connect()
   const msgBase = {
     type: msgType,
-    source: messagingConfig.messageSource
+    source: msgCfg.msgSrc
   }
   const msg = { ...msgData, ...msgBase }
   console.log('sending message', msg)
@@ -33,11 +33,11 @@ async function sendMessage (sender, msgData, msgType) {
 
 module.exports = {
   agreementChanged: async function (agreementData) {
-    agreementChangedSender = new MessageSender(messagingConfig.agreementChangedTopic)
-    await sendMessage(agreementChangedSender, agreementData, messagingConfig.agreementChangedMessageType)
+    agreementChangedSender = new MessageSender(msgCfg.agreementChangedTopic)
+    await sendMsg(agreementChangedSender, agreementData, msgCfg.agreementChangedMsgType)
   },
   eligibilityChanged: async function (eligibilityData) {
-    eligibilityChangedSender = new MessageSender(messagingConfig.eligibilityChangedTopic)
-    await sendMessage(eligibilityChangedSender, eligibilityData, messagingConfig.eligibilityChangedMessageType)
+    eligibilityChangedSender = new MessageSender(msgCfg.eligibilityChangedTopic)
+    await sendMsg(eligibilityChangedSender, eligibilityData, msgCfg.eligibilityChangedMsgType)
   }
 }

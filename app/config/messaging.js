@@ -26,7 +26,7 @@ module.exports = {
     type: 'queue',
     ...sharedConfig
   },
-  agreementChangedMessageType: 'uk.gov.ffc.sfi.agreement.changed',
-  eligibilityChangedMessageType: 'uk.gov.ffc.sfi.eligibility.changed',
-  messageSource: 'ffc-sfi-agreement'
+  agreementChangedMsgType: 'uk.gov.ffc.sfi.agreement.changed',
+  eligibilityChangedMsgType: 'uk.gov.ffc.sfi.eligibility.changed',
+  msgSrc: 'ffc-sfi-agreement'
 }
