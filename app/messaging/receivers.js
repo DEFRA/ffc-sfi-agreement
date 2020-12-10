@@ -1,4 +1,4 @@
-const messagingConfig = require('../config/messaging')
+const msgCfg = require('../config/messaging')
 const { MessageReceiver } = require('ffc-messaging')
 
 let updateAgreementReceiver
@@ -21,11 +21,11 @@ process.on('SIGINT', async () => {
 
 module.exports = {
   startUpdateEligibility: async function (eligibilityAction) {
-    updateEligibilityReceiver = new MessageReceiver(messagingConfig.updateEligibilityQueue, eligibilityAction)
+    updateEligibilityReceiver = new MessageReceiver(msgCfg.updateEligibilityQueue, eligibilityAction)
     await updateEligibilityReceiver.connect()
   },
   startUpdateAgreement: async function (agreementAction) {
-    updateAgreementReceiver = new MessageReceiver(messagingConfig.updateAgreementQueue, agreementAction)
+    updateAgreementReceiver = new MessageReceiver(msgCfg.updateAgreementQueue, agreementAction)
     await updateAgreementReceiver.connect()
   }
 }
