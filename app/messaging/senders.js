@@ -1,5 +1,6 @@
-const msgCfg = require('../config/messaging')
 const { MessageSender } = require('ffc-messaging')
+const msgCfg = require('../config/messaging')
+const { log } = require('../services/logger')
 
 let agreementChangedSender
 let eligibilityChangedSender
@@ -26,7 +27,7 @@ async function sendMsg (sender, msgData, msgType) {
     source: msgCfg.msgSrc
   }
   const msg = { ...msgData, ...msgBase }
-  console.log('sending message', msg)
+  log('sending message', msg)
   await sender.sendMessage(msg)
   await sender.closeConnection()
 }
