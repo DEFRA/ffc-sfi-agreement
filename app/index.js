@@ -1,12 +1,13 @@
 const server = require('./server')
+const { log } = require('./services/logger')
 
 const init = async () => {
   await server.start()
-  console.log('Server running on %s', server.info.uri)
+  log(`Server running on ${server.info.uri}`)
 }
 
 process.on('unhandledRejection', (err) => {
-  console.log(err)
+  log(err)
   process.exit(1)
 })
 
