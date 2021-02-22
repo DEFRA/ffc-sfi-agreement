@@ -1,6 +1,6 @@
 {
   "name": "ffc-sfi-agreement",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "Backend microservice for orchestrating an SFI agreement",
   "homepage": "https://github.com/DEFRA/ffc-sfi-agreement",
   "main": "app/index.js",

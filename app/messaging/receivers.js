@@ -22,13 +22,12 @@ process.on('SIGINT', async () => {
 
 module.exports = {
   startUpdateEligibility: async function () {
-    updateEligibilityReceiver = new MessageReceiver(msgCfg.updateEligibilityQueue, null)
+    updateEligibilityReceiver = new MessageReceiver(msgCfg.updateEligibilityQueue, (msg) => {})
     await updateEligibilityReceiver.subscribe()
   },
   startUpdateAgreement: async function (cache) {
     const updateAction = msg => updateAgreement(msg, cache, updateAgreementReceiver)
     updateAgreementReceiver = new MessageReceiver(msgCfg.updateAgreementQueue, updateAction)
     await updateAgreementReceiver.subscribe()
-  },
-  updateAgreementReceiver
+  }
 }

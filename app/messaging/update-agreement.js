@@ -5,7 +5,7 @@ module.exports = async function (msg, cache, updateAgreementReceiver) {
   try {
     const source = msg.applicationProperties.source
     const { body, correlationId } = msg
-    updateAgreementReceiver.completeMessage(msg)
+
     log(`Received ${JSON.stringify(body)} from ${source}`)
 
     switch (source) {
@@ -19,6 +19,8 @@ module.exports = async function (msg, cache, updateAgreementReceiver) {
       default:
         log(`Message from unknown message source ${source}. Purposefully doing nothing.`)
     }
+
+    await updateAgreementReceiver.completeMessage(msg)
   } catch (err) {
     console.error('Unable to process message:', err)
     await updateAgreementReceiver.abandonMessage(msg)
