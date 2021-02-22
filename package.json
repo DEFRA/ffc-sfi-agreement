@@ -1,6 +1,6 @@
 {
   "name": "ffc-sfi-agreement",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "Backend microservice for orchestrating an SFI agreement",
   "homepage": "https://github.com/DEFRA/ffc-sfi-agreement",
   "main": "app/index.js",
@@ -18,8 +18,9 @@
   "dependencies": {
     "@azure/ms-rest-nodeauth": "^3.0.6",
     "@hapi/hapi": "^20.0.3",
+    "applicationinsights": "^1.8.10",
     "bunyan": "^1.8.15",
-    "ffc-messaging": "^1.0.7"
+    "ffc-messaging": "^2.1.1"
   },
   "devDependencies": {
     "jest": "^26.6.3",
