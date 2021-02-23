@@ -19,7 +19,4 @@ const routes = [
 server.route(routes)
 require('./routes/value')(server, cache)
 
-const updateAgreementAction = require('./messaging/update-agreement')
-require('./messaging/receivers').startUpdateAgreement(updateAgreementAction(cache))
-
-module.exports = server
+module.exports = { server, cache }

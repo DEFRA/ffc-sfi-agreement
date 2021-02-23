@@ -1,14 +1,17 @@
 const { log } = require('../services/logger')
+const { agreementChanged } = require('./senders')
+const { logError } = require('../services/logger')
 
-module.exports = (cache) => {
-  return async function (msg) {
-    const source = msg.userProperties.source
+module.exports = async function (msg, cache, updateAgreementReceiver) {
+  try {
+    const source = msg.applicationProperties.source
     const { body, correlationId } = msg
+
     log(`Received ${JSON.stringify(body)} from ${source}`)
 
     switch (source) {
       case 'ffc-sfi-frontend':
-        await require('./senders').agreementChanged({ body, correlationId })
+        await agreementChanged({ body, correlationId })
         break
       case 'ffc-sfi-calculator':
         await cache.set(correlationId, body)
@@ -17,5 +20,10 @@ module.exports = (cache) => {
       default:
         log(`Message from unknown message source ${source}. Purposefully doing nothing.`)
     }
+
+    await updateAgreementReceiver.completeMessage(msg)
+  } catch (err) {
+    logError(err, 'Unable to process update agreement message')
+    await updateAgreementReceiver.abandonMessage(msg)
   }
 }
