@@ -28,6 +28,7 @@ async function sendMsg (sender, msgData, msgType) {
   const msg = { ...msgData, ...msgBase }
 
   log('sending message', msg)
+
   await sender.sendMessage(msg)
 }
 

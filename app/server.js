@@ -19,6 +19,4 @@ const routes = [
 server.route(routes)
 require('./routes/value')(server, cache)
 
-require('./messaging/receivers').startUpdateAgreement(cache)
-
-module.exports = server
+module.exports = { server, cache }
