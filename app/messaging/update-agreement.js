@@ -1,6 +1,6 @@
 const { log } = require('../services/logger')
 const { agreementChanged } = require('./senders')
-const { logError } = require('./services/logger')
+const { logError } = require('../services/logger')
 
 module.exports = async function (msg, cache, updateAgreementReceiver) {
   try {
