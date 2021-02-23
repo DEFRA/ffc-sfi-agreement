@@ -1,5 +1,6 @@
 const { log } = require('../services/logger')
 const { agreementChanged } = require('./senders')
+const { logError } = require('./services/logger')
 
 module.exports = async function (msg, cache, updateAgreementReceiver) {
   try {
@@ -22,7 +23,7 @@ module.exports = async function (msg, cache, updateAgreementReceiver) {
 
     await updateAgreementReceiver.completeMessage(msg)
   } catch (err) {
-    console.error('Unable to process message:', err)
+    logError(err, 'Unable to process update agreement message')
     await updateAgreementReceiver.abandonMessage(msg)
   }
 }
