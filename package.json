@@ -17,7 +17,7 @@
   "license": "OGL-UK-3.0",
   "dependencies": {
     "@azure/ms-rest-nodeauth": "^3.0.6",
-    "@hapi/hapi": "^20.0.3",
+    "@hapi/hapi": "^20.3.0",
     "applicationinsights": "^1.8.10",
     "bunyan": "^1.8.15",
     "ffc-messaging": "^2.1.1"
